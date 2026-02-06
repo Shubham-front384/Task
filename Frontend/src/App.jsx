@@ -16,7 +16,7 @@ const App = () => {
 
   // ================= GET ALL STUDENTS =================
   const getStudentAllData = () => {
-    axios.get('http://localhost:3000/api/student')
+    axios.get('/api/student')
       .then((res) => {
         setStudents(res.data.studentInfo);
       });
@@ -44,7 +44,7 @@ const App = () => {
     if (editStudent) {
       axios
         .patch(
-          `http://localhost:3000/api/student/${editStudent._id}`,
+          `/api/student/${editStudent._id}`,
           studentData
         )
         .then(() => {
@@ -55,7 +55,7 @@ const App = () => {
     // ADD
     else {
       axios
-        .post('http://localhost:3000/api/student', studentData)
+        .post('/api/student', studentData)
         .then(() => {
           getStudentAllData();
         });
@@ -78,7 +78,7 @@ const App = () => {
     if (!confirmDelete) return;
 
     axios
-      .delete(`http://localhost:3000/api/student/${id}`)
+      .delete(`/api/student/${id}`)
       .then(() => {
         if (editStudent && editStudent._id === id) {
           setEditStudent(null);
