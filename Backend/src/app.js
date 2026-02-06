@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const studentDetailModel = require("./model/note.model");
 const cors = require("cors");
@@ -8,10 +9,6 @@ app.use(express.json());
 app.use(cors());
 
 app.use(express.static("./public"));
-
-app.use('*name', (req, res) => {
-  res.sendFile(path.join(__dirname, '..','/public/index.html'));
-});
 
 app.post("/api/student", async (req, res) => {
   const { fullName, classRoom, rollNo, address } = req.body;
@@ -66,6 +63,10 @@ app.delete("/api/student/:id", async (req, res) => {
     msg: "Student Data Deleted Successfully",
     studentInfo
   });
+});
+
+app.use('*name', (req, res) => {
+  res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
 module.exports = app;
